@@ -1,0 +1,1 @@
+{"uuid":"77f4e156-ba2e-4515-8b7b-01d5b09c0f8b","name":"com.notes.base.BaseTest.setUp","children":["ad29d4b4-8570-4d16-89ac-79480e0d82e6"],"description":"","befores":[{"name":"setUp","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1779542549378,"stop":1779542583514}],"afters":[],"start":1779542549377,"stop":1779542583514}

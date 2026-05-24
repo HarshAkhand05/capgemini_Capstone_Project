@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Notes App – UI Suite"
+       verbose="2"
+       preserve-order="true">
+
+
+    <test name="Phase 1 – Registration"
+          thread-count="5"
+          parallel="methods"
+          preserve-order="true">
+
+        <parameter name="browser" value="chrome"/>
+
+        <groups>
+            <run>
+                <include name="registration"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="com.notes.tests.ui.RegistrationTests"/>
+        </classes>
+    </test>
+
+
+    <test name="Phase 2 – Login"
+          thread-count="7"
+          parallel="methods"
+          preserve-order="true">
+
+        <parameter name="browser" value="chrome"/>
+
+        <groups>
+            <run>
+                <include name="login"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="com.notes.tests.ui.LoginTests"/>
+        </classes>
+    </test>
+
+
+    <test name="Phase 3 – Note Creation"
+          thread-count="3"
+          parallel="methods"
+          preserve-order="true">
+
+        <parameter name="browser" value="chrome"/>
+
+        <groups>
+            <run>
+                <include name="notes"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="com.notes.tests.ui.NoteCreationTests"/>
+        </classes>
+    </test>
+
+</suite>

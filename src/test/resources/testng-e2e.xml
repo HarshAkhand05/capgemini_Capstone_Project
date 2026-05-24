@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="E2E Hybrid Test Suite"
+       parallel="false"
+       verbose="1">
+    <test name="UI to API Validation Test">
+
+        <parameter name="browser" value="chrome"/>
+
+        <classes>
+
+            <class name="com.notes.tests.e2e.UiToApiValidationTests"/>
+
+        </classes>
+
+    </test>
+    <test name="API to UI Validation Test">
+
+        <parameter name="browser" value="chrome"/>
+
+        <classes>
+
+            <class name="com.notes.tests.e2e.ApiToUiDeleteValidationTests"/>
+
+        </classes>
+
+    </test>
+
+</suite>
