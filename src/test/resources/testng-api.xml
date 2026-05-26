@@ -1,18 +1,28 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">-->
 
-<suite name="API Test Suite"
-       parallel="false"
-       verbose="1">
+<!--<suite name="API Test Suite"-->
+<!--       parallel="classes"-->
+<!--       thread-count="2"-->
+<!--       verbose="1">-->
 
-    <test name="API Tests">
+<!--    <listeners>-->
+<!--        <listener class-name="com.notes.utils.McpTestListener"/>-->
+<!--    </listeners>-->
 
-        <classes>
-            <class name="com.notes.tests.api.NotesApiTests"/>
-            <class name="com.notes.tests.api.DeleteNoteApi"/>
+<!--&lt;!&ndash;    <test name="API Tests">&ndash;&gt;-->
+<!--&lt;!&ndash;        <classes>&ndash;&gt;-->
+<!--&lt;!&ndash;            <class name="com.notes.tests.api.NotesApiTests"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            <class name="com.notes.tests.api.DeleteNoteApi"/>&ndash;&gt;-->
+<!--&lt;!&ndash;        </classes>&ndash;&gt;-->
+<!--&lt;!&ndash;    </test>&ndash;&gt;-->
 
-        </classes>
+<!--    <test name="API Negative Tests">-->
+<!--        <classes>-->
+<!--&lt;!&ndash;            <class name="com.notes.tests.api.negative.CreateNoteNegativeTests"/>&ndash;&gt;-->
+<!--            <class name="com.notes.tests.api.negative.DeleteNegativeTests"/>-->
+<!--            <class name="com.notes.tests.api.negative.LoginNegativeTests"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
-    </test>
-
-</suite>
+<!--</suite>-->

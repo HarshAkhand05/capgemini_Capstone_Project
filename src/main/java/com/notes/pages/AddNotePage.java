@@ -2,6 +2,7 @@ package com.notes.pages;
 
 import com.notes.utils.WaitUtils;
 import org.openqa.selenium.By;
+import com.notes.utils.AgenticDriver;
 
 public class AddNotePage extends BasePage {
 
@@ -51,7 +52,12 @@ public class AddNotePage extends BasePage {
 
     public DashboardPage clickCreate() {
 
-        click(CREATE_BTN);
+//        click(CREATE_BTN);
+        AgenticDriver.agentClick(
+                By.cssSelector("[data-testid='note-submit']"),  // primary
+                By.id("note-submit"),                           // fallback 1
+                By.xpath("//button[@type='submit']")            // fallback 2
+        );
 
 
         WaitUtils.waitForVisible(DASHBOARD_ADD_NOTE_BTN);

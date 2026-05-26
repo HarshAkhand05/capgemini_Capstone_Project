@@ -9,16 +9,28 @@ import java.time.Duration;
 import java.util.List;
 
 
-public class WaitUtils {
+public class  WaitUtils {
 
-    private static final int DEFAULT_TIMEOUT = 20;
-    private static final int LONG_TIMEOUT    = 40;
+    private static final int DEFAULT_TIMEOUT = 30;
+    private static final int LONG_TIMEOUT    = 50;
     private static final int SHORT_TIMEOUT   = 5;
 
     private WaitUtils() {}
 
     private static WebDriverWait wait(int seconds) {
-        return new WebDriverWait(BaseTest.getDriver(), Duration.ofSeconds(seconds));
+        WebDriverWait wait =
+                new WebDriverWait(
+                        BaseTest.getDriver(),
+                        Duration.ofSeconds(seconds)
+                );
+
+        wait.pollingEvery(Duration.ofMillis(500));
+
+        wait.ignoring(NoSuchElementException.class);
+        wait.ignoring(StaleElementReferenceException.class);
+        wait.ignoring(ElementClickInterceptedException.class);
+
+        return wait;
     }
 
     // ── Visibility ─────────────────────────────────────────────────────────

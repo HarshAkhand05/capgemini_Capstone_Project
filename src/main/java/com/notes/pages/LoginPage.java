@@ -21,10 +21,7 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    /**
-     * Clicks login and waits for the URL to change away from the login page,
-     * confirming the redirect to dashboard has started before returning.
-     */
+
     public DashboardPage clickLogin() {
         click(LOGIN_BTN);
         // Wait for the URL to move away from the login page before handing back

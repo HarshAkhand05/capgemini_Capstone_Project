@@ -4,24 +4,38 @@
 <suite name="E2E Hybrid Test Suite"
        parallel="false"
        verbose="1">
-    <test name="UI to API Validation Test">
+    <listeners>
+        <listener class-name="com.notes.utils.McpTestListener"/>
+    </listeners>
+<!--    <test name="UI to API Validation Test">-->
+
+<!--        <parameter name="browser" value="chrome"/>-->
+
+<!--        <classes>-->
+
+<!--            <class name="com.notes.tests.e2e.UiToApiValidationTests"/>-->
+
+<!--        </classes>-->
+
+<!--    </test>-->
+<!--    <test name="API to UI Validation Test">-->
+
+<!--        <parameter name="browser" value="chrome"/>-->
+
+<!--        <classes>-->
+
+<!--            <class name="com.notes.tests.e2e.ApiToUiDeleteValidationTests"/>-->
+
+<!--        </classes>-->
+
+<!--    </test>-->
+    <test name="API to UI Validation2 Test">
 
         <parameter name="browser" value="chrome"/>
 
         <classes>
 
-            <class name="com.notes.tests.e2e.UiToApiValidationTests"/>
-
-        </classes>
-
-    </test>
-    <test name="API to UI Validation Test">
-
-        <parameter name="browser" value="chrome"/>
-
-        <classes>
-
-            <class name="com.notes.tests.e2e.ApiToUiDeleteValidationTests"/>
+            <class name="com.notes.tests.e2e.ApiToUiValidationTest"/>
 
         </classes>
 

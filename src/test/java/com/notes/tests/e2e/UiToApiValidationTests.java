@@ -188,7 +188,7 @@ public class UiToApiValidationTests extends BaseTest {
 
         api.attachResponse(notesResponse.asPrettyString());
 
-        api.validateResponseTime(notesResponse, 3000);
+        api.validateResponseTime(notesResponse, 2000);
 
         // =====================================
         // VALIDATE UI NOTE EXISTS IN API

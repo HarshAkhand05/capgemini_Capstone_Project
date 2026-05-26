@@ -131,7 +131,7 @@ public class ApiToUiDeleteValidationTests extends BaseTest {
 
         api.attachResponse(getNotesResp.asPrettyString());
 
-        api.validateResponseTime(getNotesResp, 3000);
+        api.validateResponseTime(getNotesResp, 2000);
 
         List<String> noteIds =
                 getNotesResp.jsonPath()
@@ -168,7 +168,7 @@ public class ApiToUiDeleteValidationTests extends BaseTest {
 
         api.attachResponse(deleteResp.asPrettyString());
 
-        api.validateResponseTime(deleteResp, 3000);
+        api.validateResponseTime(deleteResp, 2000);
 
         // =====================================
         // LOGIN UI

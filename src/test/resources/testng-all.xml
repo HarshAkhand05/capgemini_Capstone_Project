@@ -2,20 +2,128 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
 <suite name="Full Automation Suite"
-       parallel="false"
+       parallel="tests"
+       thread-count="2"
        verbose="1">
 
-    <suite-files>
+    <listeners>
+        <listener class-name="com.notes.utils.McpTestListener"/>
+    </listeners>
 
+    <!-- =====================================================
+         UI TESTS — Chrome
+    ===================================================== -->
 
-        <suite-file path="testng-ui.xml"/>
+    <test name="UI – Registration (Chrome)"
+          parallel="false"
+          thread-count="1"
+          preserve-order="true">
+        <parameter name="browser" value="chrome"/>
+        <groups><run><include name="registration"/></run></groups>
+        <classes>
+            <class name="com.notes.tests.ui.RegistrationTests"/>
+        </classes>
+    </test>
 
+    <test name="UI – Login (Chrome)"
+          parallel="false"
+          thread-count="1"
+          preserve-order="true">
+        <parameter name="browser" value="chrome"/>
+        <groups><run><include name="login"/></run></groups>
+        <classes>
+            <class name="com.notes.tests.ui.LoginTests"/>
+        </classes>
+    </test>
 
-        <suite-file path="testng-api.xml"/>
+    <test name="UI – Note Creation (Chrome)"
+          parallel="false"
+          thread-count="1"
+          preserve-order="true">
+        <parameter name="browser" value="chrome"/>
+        <groups><run><include name="notes"/></run></groups>
+        <classes>
+            <class name="com.notes.tests.ui.NoteCreationTests"/>
+        </classes>
+    </test>
 
+<!--    &lt;!&ndash; =====================================================-->
+<!--         UI TESTS — Edge (one test each, compatibility check)-->
+<!--    ===================================================== &ndash;&gt;-->
 
-        <suite-file path="testng-e2e.xml"/>
+<!--    <test name="UI – Registration (Edge)"-->
+<!--          parallel="false"-->
+<!--          preserve-order="true">-->
+<!--        <parameter name="browser" value="edge"/>-->
+<!--        <groups><run><include name="registration"/></run></groups>-->
+<!--        <classes>-->
+<!--            <class name="com.notes.tests.ui.RegistrationTests"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
-    </suite-files>
+<!--    <test name="UI – Login (Edge)"-->
+<!--          parallel="false"-->
+<!--          preserve-order="true">-->
+<!--        <parameter name="browser" value="edge"/>-->
+<!--        <groups><run><include name="login"/></run></groups>-->
+<!--        <classes>-->
+<!--            <class name="com.notes.tests.ui.LoginTests"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+<!--    <test name="UI – Note Creation (Edge)"-->
+<!--          parallel="false"-->
+<!--          preserve-order="true">-->
+<!--        <parameter name="browser" value="edge"/>-->
+<!--        <groups><run><include name="notes"/></run></groups>-->
+<!--        <classes>-->
+<!--            <class name="com.notes.tests.ui.NoteCreationTests"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+    <!-- =====================================================
+         API TESTS — no browser needed, very lightweight
+    ===================================================== -->
+
+    <test name="API – Positive"
+          parallel="classes"
+          thread-count="2">
+        <classes>
+            <class name="com.notes.tests.api.NotesApiTests"/>
+            <class name="com.notes.tests.api.DeleteNoteApi"/>
+        </classes>
+    </test>
+
+    <test name="API – Negative"
+          parallel="classes"
+          thread-count="2">
+        <classes>
+            <class name="com.notes.tests.api.negative.CreateNoteNegativeTests"/>
+            <class name="com.notes.tests.api.negative.DeleteNegativeTests"/>
+            <class name="com.notes.tests.api.negative.LoginNegativeTests"/>
+        </classes>
+    </test>
+
+    <!-- =====================================================
+         E2E — sequential, one browser at a time
+    ===================================================== -->
+
+    <test name="E2E – UI to API Validation"
+          parallel="false"
+          preserve-order="true">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="com.notes.tests.e2e.UiToApiValidationTests"/>
+        </classes>
+    </test>
+
+    <test name="E2E – API to UI Delete Validation"
+          parallel="false"
+          preserve-order="true">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="com.notes.tests.e2e.ApiToUiDeleteValidationTests"/>
+        </classes>
+    </test>
 
 </suite>
