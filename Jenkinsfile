@@ -1,9 +1,8 @@
 pipeline {
-
     agent any
 
     tools {
-        jdk 'JDK21'
+        jdk   'JDK21'
         maven 'Maven'
     }
 
@@ -23,16 +22,23 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                bat 'mvn test'
+                bat 'mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testng-all.xml'
             }
         }
 
         stage('Generate Allure Report') {
             steps {
+                bat 'mvn allure:report'
+            }
+        }
+
+        stage('Publish Allure Report') {
+            steps {
                 allure([
                     includeProperties: false,
                     jdk: '',
-                    results: [[path: 'target/allure-results']]
+                    reportBuildPolicy: 'ALWAYS',
+                    results: [[path: 'allure-results']]
                 ])
             }
         }
@@ -40,7 +46,7 @@ pipeline {
         stage('Archive') {
             steps {
                 archiveArtifacts(
-                    artifacts: 'target/screenshots/**, target/allure-results/**, selenium-grid.log',
+                    artifacts: 'target/screenshots/**, allure-results/**, target/surefire-reports/**',
                     allowEmptyArchive: true
                 )
             }
@@ -48,19 +54,17 @@ pipeline {
     }
 
     post {
-
-       
-
+        always {
+            echo '=== Pipeline Finished ==='
+        }
+        success {
+            echo 'BUILD SUCCESS — All tests passed'
+        }
         failure {
             echo 'BUILD FAILED — Check Allure report'
         }
-
         unstable {
-            echo '⚠ BUILD UNSTABLE — Some tests failed'
-        }
-
-        success {
-            echo 'BUILD SUCCESS — All tests passed'
+            echo 'BUILD UNSTABLE — Some tests failed'
         }
     }
 }
