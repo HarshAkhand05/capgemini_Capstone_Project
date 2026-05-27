@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     tools {
-        jdk   'JDK21'
+        jdk 'JDK21'
         maven 'Maven'
     }
 
@@ -15,61 +15,52 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Clean Project') {
             steps {
-                bat 'mvn clean compile -q'
+                bat 'mvn clean'
             }
         }
 
         stage('Run Tests') {
             steps {
-                bat 'mvn test -DsuiteXmlFile=src/test/resources/testng-all.xml -Dheadless=true -Dmaven.test.failure.ignore=true'
+                bat 'mvn test -Dmaven.test.failure.ignore=true'
             }
         }
 
-        stage('Allure Report') {
+        stage('Generate Allure Report') {
             steps {
                 allure([
-                    reportBuildPolicy: 'ALWAYS',
+                    includeProperties: false,
+                    jdk: '',
                     results: [[path: 'target/allure-results']]
-                ])
-            }
-        }
-
-        stage('HTML Report') {
-            steps {
-                publishHTML([
-                    allowMissing         : true,
-                    alwaysLinkToLastBuild: true,
-                    keepAll              : true,
-                    reportDir            : 'target/surefire-reports',
-                    reportFiles          : 'index.html',
-                    reportName           : 'TestNG Report'
                 ])
             }
         }
 
         stage('Archive') {
             steps {
-                archiveArtifacts artifacts: 'target/screenshots/**, target/allure-results/**, selenium-grid.log',
-                                 allowEmptyArchive: true
+                archiveArtifacts(
+                    artifacts: 'target/screenshots/**, target/allure-results/**, selenium-grid.log',
+                    allowEmptyArchive: true
+                )
             }
         }
     }
 
     post {
-        always {
-            bat 'taskkill /F /IM java.exe 2>NUL || exit 0'
-            echo "Build Result: ${currentBuild.result}"
-        }
-        success {
-            echo 'BUILD SUCCESS — All tests passed'
-        }
+
+       
+
         failure {
             echo 'BUILD FAILED — Check Allure report'
         }
+
         unstable {
             echo '⚠ BUILD UNSTABLE — Some tests failed'
+        }
+
+        success {
+            echo 'BUILD SUCCESS — All tests passed'
         }
     }
 }
