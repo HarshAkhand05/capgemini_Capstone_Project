@@ -21,15 +21,6 @@ pipeline {
             }
         }
 
-        stage('Start Selenium Grid') {
-            steps {
-                bat '''
-                    start /B java -jar selenium-server-4.41.0.jar standalone --max-sessions 4 --session-timeout 300 > selenium-grid.log 2>&1
-                    timeout /T 15 /NOBREAK
-                '''
-            }
-        }
-
         stage('Run Tests') {
             steps {
                 bat 'mvn test -DsuiteXmlFile=src/test/resources/testng-all.xml -Dheadless=true -Dmaven.test.failure.ignore=true'
@@ -72,10 +63,10 @@ pipeline {
             echo "Build Result: ${currentBuild.result}"
         }
         success {
-            echo '✅ BUILD SUCCESS — All tests passed'
+            echo 'BUILD SUCCESS — All tests passed'
         }
         failure {
-            echo '❌ BUILD FAILED — Check Allure report'
+            echo 'BUILD FAILED — Check Allure report'
         }
         unstable {
             echo '⚠ BUILD UNSTABLE — Some tests failed'
