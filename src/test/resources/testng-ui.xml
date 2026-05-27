@@ -1,99 +1,99 @@
-<!--<?xml version="1.0" encoding="UTF-8"?>-->
-<!--<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">-->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
-<!--<suite name="Notes App – UI Suite"-->
-<!--       verbose="2"-->
-<!--       preserve-order="true">-->
+<suite name="Notes App – UI Suite"
+       verbose="2"
+       preserve-order="true">
 
-<!--    <listeners>-->
-<!--        <listener class-name="com.notes.utils.McpTestListener"/>-->
-<!--    </listeners>-->
-<!--&lt;!&ndash;    <test name="Phase 1 – Registration"&ndash;&gt;-->
-<!--&lt;!&ndash;          thread-count="5"&ndash;&gt;-->
-<!--&lt;!&ndash;          parallel="methods"&ndash;&gt;-->
-<!--&lt;!&ndash;          preserve-order="true">&ndash;&gt;-->
-
-<!--&lt;!&ndash;        <parameter name="browser" value="chrome"/>&ndash;&gt;-->
-
-<!--&lt;!&ndash;        <groups>&ndash;&gt;-->
-<!--&lt;!&ndash;            <run>&ndash;&gt;-->
-<!--&lt;!&ndash;                <include name="registration"/>&ndash;&gt;-->
-<!--&lt;!&ndash;            </run>&ndash;&gt;-->
-<!--&lt;!&ndash;        </groups>&ndash;&gt;-->
-
-<!--&lt;!&ndash;        <classes>&ndash;&gt;-->
-<!--&lt;!&ndash;            <class name="com.notes.tests.ui.RegistrationTests"/>&ndash;&gt;-->
-<!--&lt;!&ndash;        </classes>&ndash;&gt;-->
-<!--&lt;!&ndash;    </test>&ndash;&gt;-->
-
-
-<!--&lt;!&ndash;    <test name="Phase 2 – Login"&ndash;&gt;-->
-<!--&lt;!&ndash;          thread-count="7"&ndash;&gt;-->
-<!--&lt;!&ndash;          parallel="methods"&ndash;&gt;-->
-<!--&lt;!&ndash;          preserve-order="true">&ndash;&gt;-->
-
-<!--&lt;!&ndash;        <parameter name="browser" value="chrome"/>&ndash;&gt;-->
-
-<!--&lt;!&ndash;        <groups>&ndash;&gt;-->
-<!--&lt;!&ndash;            <run>&ndash;&gt;-->
-<!--&lt;!&ndash;                <include name="login"/>&ndash;&gt;-->
-<!--&lt;!&ndash;            </run>&ndash;&gt;-->
-<!--&lt;!&ndash;        </groups>&ndash;&gt;-->
-
-<!--&lt;!&ndash;        <classes>&ndash;&gt;-->
-<!--&lt;!&ndash;            <class name="com.notes.tests.ui.LoginTests"/>&ndash;&gt;-->
-<!--&lt;!&ndash;        </classes>&ndash;&gt;-->
-<!--&lt;!&ndash;    </test>&ndash;&gt;-->
-
-
-<!--&lt;!&ndash;    <test name="Phase 3 – Note Creation"&ndash;&gt;-->
-<!--&lt;!&ndash;          thread-count="3"&ndash;&gt;-->
-<!--&lt;!&ndash;          parallel="methods"&ndash;&gt;-->
-<!--&lt;!&ndash;          preserve-order="true">&ndash;&gt;-->
-
-<!--&lt;!&ndash;        <parameter name="browser" value="chrome"/>&ndash;&gt;-->
-
-<!--&lt;!&ndash;        <groups>&ndash;&gt;-->
-<!--&lt;!&ndash;            <run>&ndash;&gt;-->
-<!--&lt;!&ndash;                <include name="notes"/>&ndash;&gt;-->
-<!--&lt;!&ndash;            </run>&ndash;&gt;-->
-<!--&lt;!&ndash;        </groups>&ndash;&gt;-->
-
-<!--&lt;!&ndash;        <classes>&ndash;&gt;-->
-<!--&lt;!&ndash;            <class name="com.notes.tests.ui.NoteCreationTests"/>&ndash;&gt;-->
-<!--&lt;!&ndash;        </classes>&ndash;&gt;-->
-<!--&lt;!&ndash;    </test>&ndash;&gt;-->
-<!--    &lt;!&ndash; =====================================================-->
-<!--         EDGE REGISTRATION TESTS-->
-<!--         One registration test case on Edge-->
-<!--    ===================================================== &ndash;&gt;-->
-
-<!--    <test name="Phase 1 – Registration – Edge"-->
-<!--          thread-count="1"-->
-<!--          parallel="false"-->
+    <listeners>
+        <listener class-name="com.notes.utils.McpTestListener"/>
+    </listeners>
+<!--    <test name="Phase 1 – Registration"-->
+<!--          thread-count="5"-->
+<!--          parallel="methods"-->
 <!--          preserve-order="true">-->
 
-<!--        <parameter name="browser" value="edge"/>-->
+<!--        <parameter name="browser" value="chrome"/>-->
 
 <!--        <groups>-->
-
 <!--            <run>-->
-
 <!--                <include name="registration"/>-->
-
 <!--            </run>-->
-
 <!--        </groups>-->
 
-
 <!--        <classes>-->
-
 <!--            <class name="com.notes.tests.ui.RegistrationTests"/>-->
-
 <!--        </classes>-->
-
 <!--    </test>-->
 
 
+<!--    <test name="Phase 2 – Login"-->
+<!--          thread-count="7"-->
+<!--          parallel="methods"-->
+<!--          preserve-order="true">-->
 
-<!--</suite>-->
+<!--        <parameter name="browser" value="chrome"/>-->
+
+<!--        <groups>-->
+<!--            <run>-->
+<!--                <include name="login"/>-->
+<!--            </run>-->
+<!--        </groups>-->
+
+<!--        <classes>-->
+<!--            <class name="com.notes.tests.ui.LoginTests"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+
+<!--    <test name="Phase 3 – Note Creation"-->
+<!--          thread-count="3"-->
+<!--          parallel="methods"-->
+<!--          preserve-order="true">-->
+
+<!--        <parameter name="browser" value="chrome"/>-->
+
+<!--        <groups>-->
+<!--            <run>-->
+<!--                <include name="notes"/>-->
+<!--            </run>-->
+<!--        </groups>-->
+
+<!--        <classes>-->
+<!--            <class name="com.notes.tests.ui.NoteCreationTests"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+    <!-- =====================================================
+         EDGE REGISTRATION TESTS
+         One registration test case on Edge
+    ===================================================== -->
+
+    <test name="Phase 1 – Registration – Edge"
+          thread-count="1"
+          parallel="false"
+          preserve-order="true">
+
+        <parameter name="browser" value="edge"/>
+
+        <groups>
+
+            <run>
+
+                <include name="registration"/>
+
+            </run>
+
+        </groups>
+
+
+        <classes>
+
+            <class name="com.notes.tests.ui.RegistrationTests"/>
+
+        </classes>
+
+    </test>
+
+
+
+</suite>

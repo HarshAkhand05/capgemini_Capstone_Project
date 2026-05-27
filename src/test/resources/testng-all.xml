@@ -125,5 +125,13 @@
             <class name="com.notes.tests.e2e.ApiToUiDeleteValidationTests"/>
         </classes>
     </test>
+    <test name="E2E – API to UI Defect validation"
+          parallel="false"
+          preserve-order="true">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="com.notes.tests.e2e.ApiToUiValidationTest"/>
+        </classes>
+    </test>
 
 </suite>
