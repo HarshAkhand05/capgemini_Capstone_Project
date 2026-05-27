@@ -22,7 +22,9 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                bat 'mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testng-all.xml'
+                catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
+                    bat 'mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testng-all.xml'
+                }
             }
         }
 
