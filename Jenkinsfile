@@ -23,7 +23,7 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                bat 'mvn test -Dmaven.test.failure.ignore=true'
+                bat 'mvn test'
             }
         }
 
