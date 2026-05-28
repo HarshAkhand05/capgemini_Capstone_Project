@@ -1,25 +1,20 @@
 pipeline {
     agent any
-
     tools {
         jdk   'JDK21'
         maven 'Maven'
     }
-
     stages {
-
         stage('Checkout') {
             steps {
                 checkout scm
             }
         }
-
         stage('Clean Project') {
             steps {
                 bat 'mvn clean'
             }
         }
-
         stage('Run Tests') {
             steps {
                 catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
@@ -27,34 +22,34 @@ pipeline {
                 }
             }
         }
-
         stage('Generate Allure Report') {
             steps {
-                bat 'mvn allure:serve'
+                // USE allure:report NOT allure:serve
+                bat 'mvn allure:report'
             }
         }
-
         stage('Publish Allure Report') {
             steps {
-                allure([
-                    includeProperties: false,
-                    jdk: '',
-                    reportBuildPolicy: 'ALWAYS',
-                    results: [[path: 'allure-results']]
+                // USE publishHTML as fallback if Allure plugin not installed
+                publishHTML(target: [
+                    allowMissing         : false,
+                    alwaysLinkToLastBuild: true,
+                    keepAll              : true,
+                    reportDir            : 'target/site/allure-maven-plugin',
+                    reportFiles          : 'index.html',
+                    reportName           : 'Allure Report'
                 ])
             }
         }
-
         stage('Archive') {
             steps {
                 archiveArtifacts(
-                    artifacts: 'target/screenshots/**, allure-results/**, target/surefire-reports/**',
+                    artifacts: 'target/screenshots/**, target/allure-results/**, target/surefire-reports/**',
                     allowEmptyArchive: true
                 )
             }
         }
     }
-
     post {
         always {
             echo '=== Pipeline Finished ==='
