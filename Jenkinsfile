@@ -3,6 +3,7 @@ pipeline {
     tools {
         jdk   'JDK21'
         maven 'Maven'
+        allure 'allure'  
     }
     stages {
         stage('Checkout') {
