@@ -59,10 +59,8 @@ pipeline {
             echo 'BUILD SUCCESS — All tests passed'
         }
         failure {
-            echo 'BUILD FAILED — Check Allure report'
+            echo 'BUILD FAILED — Defect found'
         }
-        unstable {
-            echo 'BUILD UNSTABLE — Some tests failed'
-        }
+       
     }
 }
